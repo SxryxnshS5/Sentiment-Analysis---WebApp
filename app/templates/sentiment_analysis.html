@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/sentiment_analysis.css">
+    <title>Analysis Result</title>
+    <script>
+        // Hide loading overlay if it exists on load
+        window.onload = function() {
+            const loadingOverlay = document.getElementById('loading-overlay');
+            if (loadingOverlay) {
+                loadingOverlay.style.display = 'none';
+            }
+        }
+    </script>
+</head>
+<body>
+    <header class="header">
+        <h1>Analysis Result</h1>
+    </header>
+    <main class="container">
+        <section class="analysis-result">
+            <article class="analysis-content">
+                {% if analysis %}
+                    <div class="result-item">
+                        <span class="label">Label:</span>
+                        <span class="value">{{ analysis[0]['label'] }}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">Score:</span>
+                        <span class="value">{{ analysis[0]['score'] | round(2) }}</span>
+                    </div>
+                {% else %}
+                    <p>Analysis is loading or an error occurred. Please try reloading the page.</p>
+                {% endif %}
+            </article>
+        </section>
+        <nav>
+            <a href="/" class="btn">Go Back</a>
+        </nav>
+    </main>
+    <footer class="footer">
+        <p>Made by: github.com/SxryxnshS5</p>
+    </footer>
+</body>
+</html>
